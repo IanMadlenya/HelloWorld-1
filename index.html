@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<META CHARSET="UTF-8">
+		<title>Weave Hello World Example</title>
+		<link href="helloworld.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div>
+			Hello Weavers, my name is: <input id="inputField" oninput='updateLinkableVariable(event)'></input>
+		</div>
+		<div>
+			Two way data binding: <input id="inputField2" oninput='updateLinkableVariable(event)'></input>
+		</div>
+		<script type="text/javascript" src="weavejs-core.js"></script>
+		<script type="text/javascript">new WeaveJS().start();</script>
+		<script>
+			function updateLinkableVariable(event)
+			{
+				user.value = event.target.value;
+			}
+			function updateName()
+			{
+				var inputField = document.getElementById("inputField");
+				var inputField2 = document.getElementById("inputField2");
+				inputField.value = user.value;
+				inputField2.value = user.value;
+			}
+			var user = new weavejs.core.LinkableString("John");
+			user.addImmediateCallback(this, updateName, true);
+		</script>
+	</body>
+</html>
